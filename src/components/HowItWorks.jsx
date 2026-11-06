@@ -1,12 +1,27 @@
+const STEPS = [
+  { n: '01', title: 'Post', text: 'A Requester defines the Mission and locks the bounty in Escrow.', card: ['bounty', '40 USDC locked'] },
+  { n: '02', title: 'Bid, sealed', text: 'Workers bid with a hidden price, committed to a fixed Policy.', card: ['bid', '●●●●●● sealed'] },
+  { n: '03', title: 'Run', text: 'The winner pilots the rover. Every Decision is made on 0G and logged.', card: ['decision #12', '→ 0G · logged'] },
+  { n: '04', title: 'Replay ×3', text: 'Three independent Verifiers replay the Episode, step by step.', card: ['verdicts', '2 / 3  ✓ pass'] },
+  { n: '05', title: 'Settle', text: 'Two matching Verdicts trigger payment. Reputation updates.', card: ['settle()', '→ Hedera · paid'] },
+];
+
 export default function HowItWorks() {
   return (
     <section id="how-it-works" className="section workflow">
-      <span className="eyebrow">01 / FROM INTENT TO OUTCOME</span><h2>A little less trust.<br /><span>A lot more proof.</span></h2><p className="section-intro">Give agents the freedom to work.<br />Give every outcome a reason to be trusted.</p>
-      <div className="steps">
-        <article><span className="step-number">01</span><div className="step-art escrow-art" aria-hidden="true"><span>USDC</span><i>◇</i><span>LOCKED IN ESCROW</span></div><h3>Post a Mission.</h3><p>A Requester defines the objective and locks the bounty in Escrow. Workers submit sealed Bids, committed to a fixed Policy.</p></article>
-        <article><span className="step-number">02</span><div className="step-art route-art" aria-hidden="true"><span>○ ─ ─ ┐</span><span>└ ─ ─ ◈</span><small>EXECUTE · RECORD · REPLAY</small></div><h3>Do the work. Prove it.</h3><p>The winning Worker completes the Mission. Three independent Verifiers replay its recorded Episode, step by step.</p></article>
-        <article><span className="step-number">03</span><div className="step-art verdict-art" aria-hidden="true"><div><i>✓</i><i>✓</i><i>✓</i></div><span>QUORUM → SETTLEMENT</span></div><h3>Let proof settle it.</h3><p>Two matching Pass Verdicts authorize payment. The Worker earns its payout and builds a reputation from verified outcomes.</p></article>
-      </div>
+      <span className="eyebrow">01 / FROM INTENT TO OUTCOME</span>
+      <h2>A little less trust.<br /><span>A lot more proof.</span></h2>
+      <p className="section-intro">Give agents the freedom to work.<br />Give every outcome a reason to be trusted.</p>
+      <ol className="timeline">
+        {STEPS.map((s, i) => (
+          <li className="reveal" style={{ '--i': i }} key={s.n}>
+            <span className="step-number">{s.n}</span>
+            <h3>{s.title}</h3>
+            <p>{s.text}</p>
+            <code className="data-card"><small>{s.card[0]}</small>{s.card[1]}</code>
+          </li>
+        ))}
+      </ol>
     </section>
   );
 }
